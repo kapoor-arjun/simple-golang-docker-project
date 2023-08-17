@@ -8,13 +8,14 @@ import(
 )
 
 func main(){
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request)){
-		fmt.FPrintf(w, "HELLO, %q", html.EscapeString(r.URL.Path))
-	}
 
-	http.HandleFunc("hi", func(w http.ResponseWriter, r *http.Request)){
-		fmt.FPrintf(w, "hi")
-	}
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
+		fmt.Fprintf(w, "HELLO, %q", html.EscapeString(r.URL.Path))
+	})
+
+	http.HandleFunc("welcome", func(w http.ResponseWriter, r *http.Request){
+		fmt.Fprintf(w, "Hi, Welcome")
+	})
 
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
